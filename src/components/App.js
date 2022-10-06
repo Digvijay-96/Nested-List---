@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import "./../styles/App.css";
-
+import StateComponent from "./state"
 // Do not alter the states const and values inside it.
 const states = [
   {
@@ -155,32 +155,12 @@ const states = [
 ];
 
 function App() {
-  console.log(states);
-  return <div id="main">
-     <ol>
-      {states.map((statesObj,index)=>{
-         return(<div key={`state`+(index+1)}>
-         <li>{statesObj.name}
-             <ol>
-               {statesObj.cities.map((citiesObj,cityindex)=>{
-                    return (<div key={`city`+(cityindex+1)}>
-                    <li>{citiesObj.name}
-                      <ol>
-                        {citiesObj.towns.map((townObj,townIndex)=>{
-                         return (<div key={`town`+(townIndex+1)}>
-                          <li>{townObj.name}</li>
-                         </div>)
-                        })}
-                      </ol>
-                    </li>   
-                    </div>)
-               })}       
-             </ol>
-         </li>
-         </div>)
-      })}
-     </ol>
-  </div>;
+  const [changeStates,setStates] = useState(0)
+  return (
+              <div id="main">
+                  <StateComponent arrayStates={[...states]} />
+              </div>
+        );
 }
 
 export default App;
